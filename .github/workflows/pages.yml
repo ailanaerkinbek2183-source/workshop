@@ -1,0 +1,55 @@
+name: Котировки HSBK и публикация на GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # Пн–Пт в 12:40 UTC = 17:40 по Алматы, после закрытия торгов KASE
+    - cron: '40 12 * * 1-5'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      # Если KASE недоступна, сайт соберётся на последнем сохранённом снимке
+      - name: Скачать котировки с KASE
+        continue-on-error: true
+        run: npm run fetch
+      - name: Закоммитить котировки, если изменились
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
+          git add public/data
+          git diff --cached --quiet || { git commit -m "Котировки HSBK на $(date -u +%F)" && git push; }
+
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

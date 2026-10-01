@@ -14,8 +14,10 @@ npm run build    # статическая сборка в dist/
 
 - Источник данных: `https://kase.kz/tv-charts/securities/history` (тот же, что у графиков на сайте KASE).
   CORS у него нет, поэтому собранный сайт читает снимок `public/data/<SYMBOL>.json`.
-- Снимок обновляется GitHub Actions (`.github/workflows/update-prices.yml`) по будням в 17:40 по Алматы,
-  после закрытия торгов; можно запустить вручную во вкладке Actions.
+- Сайт: https://ailanaerkinbek2183-source.github.io/workshop/
+- `.github/workflows/pages.yml` по будням в 17:40 по Алматы (после закрытия торгов), при каждом пуше в `main`
+  и вручную из вкладки Actions скачивает котировки, коммитит снимок, собирает сайт и публикует его на GitHub Pages.
+  В Settings → Pages источником должен быть выбран **GitHub Actions**.
 - Индикаторы и правила сигналов: `src/lib/indicators.js`.
 - История с 2013 года: до сплита в декабре 2012 цены несопоставимы.
 
