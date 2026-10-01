@@ -3,13 +3,63 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Workshop</title>
+    <title>Halyk HSBK</title>
   </head>
   <body>
-    <div id="app">
-      <h1>Workshop</h1>
-      <p id="status">Проверяем подключение к Supabase…</p>
-    </div>
+    <main class="page">
+      <header class="top">
+        <div>
+          <h1>Халык Банк <span class="muted" id="ticker-label">HSBK · KASE · ISIN KZ000A0LE0S4</span></h1>
+          <p class="muted small" id="updated">Загружаем котировки…</p>
+        </div>
+        <div class="seg" role="group" aria-label="Инструмент" id="symbol-switch">
+          <button data-symbol="HSBK" aria-pressed="true">Акции, ₸</button>
+          <button data-symbol="HSBKd" aria-pressed="false">ГДР, $</button>
+        </div>
+      </header>
+
+      <section class="tiles" id="tiles"></section>
+
+      <section class="card">
+        <div class="card-head">
+          <h2>Цена закрытия и сигналы входа</h2>
+          <div class="seg" role="group" aria-label="Период" id="range-switch">
+            <button data-range="63">3М</button>
+            <button data-range="126">6М</button>
+            <button data-range="252" aria-pressed="true">1Г</button>
+            <button data-range="756">3Г</button>
+            <button data-range="1260">5Г</button>
+            <button data-range="0">Всё</button>
+          </div>
+        </div>
+        <div class="legend" id="legend"></div>
+        <div id="chart" class="chart"></div>
+        <p class="muted small">Нижняя панель — RSI(14): ниже 30 — перепроданность, выше 70 — перекупленность.</p>
+      </section>
+
+      <div class="grid2">
+        <section class="card">
+          <h2>Последние сигналы</h2>
+          <div class="table-wrap"><table id="signals-table"></table></div>
+        </section>
+        <section class="card">
+          <h2>Как сигналы отработали в прошлом</h2>
+          <p class="muted small">Средняя доходность и доля прибыльных случаев через N торговых дней после сигнала, с 2013 года. «Любой день» — база для сравнения: сигнал полезен, только если он лучше базы.</p>
+          <div class="table-wrap"><table id="backtest-table"></table></div>
+        </section>
+      </div>
+
+      <section class="card">
+        <h2>Как считаются сигналы</h2>
+        <ul class="rules" id="rules"></ul>
+        <p class="muted small">
+          <b>Оценка входа</b> (0–100) объединяет RSI (35 %), положение цены в полосах Боллинджера (35 %)
+          и просадку от годового максимума (30 %); если цена ниже SMA200, балл умножается на 0,8.
+          Цены не скорректированы на дивиденды: в дату отсечки цена падает на размер дивиденда, это может давать ложные сигналы.
+          Это технический анализ, а не инвестиционная рекомендация.
+        </p>
+      </section>
+    </main>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
