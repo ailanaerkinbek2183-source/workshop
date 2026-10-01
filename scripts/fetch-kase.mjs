@@ -1,10 +1,10 @@
 // Скачивает дневные свечи с KASE и сохраняет в public/data/<SYMBOL>.json.
-// Запуск: node scripts/fetch-kase.mjs [SYMBOL ...]   (по умолчанию HSBK и HSBKd)
+// Запуск: node scripts/fetch-kase.mjs [SYMBOL ...]   (по умолчанию HSBK, HSBKd, KZAP, KMGZ)
 import { mkdir, writeFile } from 'node:fs/promises'
 
 // До сплита в декабре 2012 цены несопоставимы, а торги были редкими
 const FROM = Date.UTC(2013, 0, 1) / 1000
-const symbols = process.argv.slice(2).length ? process.argv.slice(2) : ['HSBK', 'HSBKd']
+const symbols = process.argv.slice(2).length ? process.argv.slice(2) : ['HSBK', 'HSBKd', 'KZAP', 'KMGZ']
 
 async function fetchHistory(symbol) {
   const to = Math.floor(Date.now() / 1000)
