@@ -119,3 +119,38 @@ td .better { font-weight: 600; }
 .rules li { margin-bottom: 6px; }
 .rules b { font-weight: 600; }
 .error { color: var(--critical-text); }
+
+/* ---------- страница портфеля ---------- */
+.seg a {
+  display: inline-flex; align-items: center; padding: 6px 12px; min-height: 32px;
+  color: var(--text-secondary); text-decoration: none; font-size: 13px;
+}
+.seg a + a { border-left: 1px solid var(--border); }
+.seg a[aria-current="page"] { background: var(--text-primary); color: var(--surface-1); }
+.updated { color: var(--text-secondary); margin: 4px 0 0; }
+.dot-live { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--good); margin-right: 6px; vertical-align: 1px; }
+.chart.chart-sm { height: 360px; }
+.legend-item { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-secondary); }
+.legend-item b { color: var(--text-primary); font-weight: 600; }
+.legend .legend-item .swatch.dashed { width: 16px; height: 0; border-top: 2px dashed var(--band); }
+.swatch-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: 0; }
+tfoot td { border-bottom: 0; border-top: 1px solid var(--border); font-weight: 600; }
+.good-text { color: var(--good-text); }
+.actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.btn {
+  border: 1px solid var(--border); background: var(--surface-1); color: var(--text-secondary);
+  border-radius: 8px; padding: 4px 10px; min-height: 32px; font: inherit; font-size: 13px; cursor: pointer;
+}
+.btn:hover { color: var(--text-primary); border-color: var(--text-muted); }
+.btn.icon { min-width: 32px; padding: 4px; }
+table.edit input, table.edit select {
+  font: inherit; font-size: 13px; color: var(--text-primary); background: var(--bg);
+  border: 1px solid var(--border); border-radius: 6px; padding: 4px 6px; min-height: 30px;
+}
+table.edit input[type="number"] { width: 100px; text-align: right; }
+code { font-size: 12px; background: var(--grid); padding: 1px 4px; border-radius: 4px; }
+
+.tiles-money { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 900px) { .tiles-money { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .tiles-money { grid-template-columns: minmax(0, 1fr); } }
+.tiles-money .value { font-size: 22px; white-space: nowrap; }

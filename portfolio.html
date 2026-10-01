@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Портфель KZAP и KMGZ</title>
+  </head>
+  <body>
+    <main class="page">
+      <header class="top">
+        <div>
+          <h1>Инвестиционный портфель <span class="muted">Казатомпром · КазМунайГаз · KASE</span></h1>
+          <p class="small updated" id="updated">Загружаем котировки…</p>
+        </div>
+        <nav class="seg" aria-label="Страницы">
+          <a href="./index.html">Халык HSBK</a>
+          <a href="./portfolio.html" aria-current="page">Портфель</a>
+        </nav>
+      </header>
+
+      <section class="tiles tiles-money" id="tiles"></section>
+
+      <section class="card">
+        <div class="card-head">
+          <h2>Позиции</h2>
+        </div>
+        <div class="table-wrap"><table id="positions-table"></table></div>
+      </section>
+
+      <section class="card">
+        <div class="card-head">
+          <h2>Стоимость портфеля и вложенные средства, ₸</h2>
+          <div class="seg" role="group" aria-label="Период" id="range-switch">
+            <button data-range="ytd" aria-pressed="true">С начала года</button>
+            <button data-range="365">1Г</button>
+            <button data-range="0">Всё</button>
+          </div>
+        </div>
+        <div class="legend" id="legend"></div>
+        <div id="chart" class="chart chart-sm"></div>
+      </section>
+
+      <div>
+        <section class="card">
+          <h2>Дивиденды</h2>
+          <p class="muted small">Сумма = акции в реестре на дату фиксации × дивиденд на акцию<span id="tax-note"></span>. На KASE расчёты T+2: в реестр попадают акции, купленные не позже чем за 2 рабочих дня до фиксации.</p>
+          <div class="table-wrap"><table id="div-table"></table></div>
+        </section>
+        <section class="card">
+          <div class="card-head">
+            <h2>Мои сделки</h2>
+            <div class="actions">
+              <button class="btn" id="add-trade">+ Сделка</button>
+              <button class="btn" id="export-trades">Скачать JSON</button>
+              <button class="btn" id="reset-trades">Сбросить</button>
+            </div>
+          </div>
+          <p class="muted small" id="trades-note"></p>
+          <div class="table-wrap"><table id="trades-table" class="edit"></table></div>
+        </section>
+      </div>
+
+      <section class="card">
+        <h2>Как считаются показатели</h2>
+        <ul class="rules">
+          <li><b>Общая стоимость</b> — количество акций × последняя цена закрытия на KASE.</li>
+          <li><b>Вложено</b> — сумма всех покупок (количество × цена + комиссия).</li>
+          <li><b>Прибыль / убыток</b> — стоимость − вложено; ниже показан итог с учётом полученных дивидендов.</li>
+          <li><b>Полученные дивиденды</b> — выплаты, дата начала которых уже наступила.</li>
+          <li><b>Изменение с начала года</b> — рост стоимости портфеля с 31 декабря прошлого года без учёта новых покупок и дивидендов.</li>
+          <li><b>Доходность за текущий год</b> — то же изменение плюс дивиденды, полученные в этом году, в процентах от стоимости на начало года и покупок этого года.</li>
+        </ul>
+        <p class="muted small">Котировки обновляются автоматически каждый день в 17:40 по Алматы (после закрытия торгов KASE). Новые дивиденды добавляются в <code>public/data/dividends.json</code>. Это не инвестиционная рекомендация.</p>
+      </section>
+    </main>
+    <script type="module" src="/src/portfolio.js"></script>
+  </body>
+</html>

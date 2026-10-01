@@ -1,0 +1,10 @@
+{
+  "_comment": "Ваши покупки. date — дата сделки, qty — количество акций, price — цена за акцию в ₸, fee — комиссия в ₸. dividendTax — ставка налога на дивиденды (0.1 = 10 %). Замените примерные сделки своими.",
+  "dividendTax": 0,
+  "trades": [
+    { "symbol": "KZAP", "date": "2024-03-15", "qty": 10, "price": 18299, "fee": 0 },
+    { "symbol": "KZAP", "date": "2026-02-10", "qty": 5, "price": 41363, "fee": 0 },
+    { "symbol": "KMGZ", "date": "2024-03-15", "qty": 20, "price": 12080, "fee": 0 },
+    { "symbol": "KMGZ", "date": "2026-01-20", "qty": 10, "price": 22215, "fee": 0 }
+  ]
+}
